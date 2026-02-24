@@ -1,6 +1,6 @@
 ## Wyoming STT сервер для Home Assistant на базе [ONNX ASR](https://github.com/istupakov/onnx-asr)
-### Нацелен на русскоговорящую аудиторию, из всего многообразия моделей интересны только некоторые
-For English-speaking users, the Parakeet models (e.g., `nemo-parakeet-ctc-0.6b`, `nemo-parakeet-rnnt-0.6b`, `nemo-parakeet-tdt-0.6b-v2`) are recommended.
+#### Нацелен на русскоговорящую аудиторию (из многообразия моделей рекомендую `gigaam-v3`)
+For English-speaking users, the Parakeet models (e.g., `nemo-parakeet-tdt-0.6b-v2`) are recommended, `canary-1b-v2` is slightly higher quality, but 4 times slower.
 
 ```
 # В простом случае достаточно установить зависимости, скачать каталог с сервером и запустить его
@@ -8,12 +8,12 @@ For English-speaking users, the Parakeet models (e.g., `nemo-parakeet-ctc-0.6b`,
 pip install onnx-asr[cpu,hub] wyoming
 
 # Пример для win с кастомным портом и облегченной версией модели (int8)
-python -m wyoming_onnxasr --model gigaam-v2-ctc --uri 'tcp://0.0.0.0:10305' --quantization int8
+python -m wyoming_onnxasr --model gigaam-v3-ctc --uri 'tcp://0.0.0.0:10305' --quantization int8
 
 # Если установлен onnxruntime-gpu, то используйте --device cuda
 pip install onnxruntime-gpu
 ```
-В linux, как водится, все операции выполняйте в виртуальной среде вручную. Или воспользуйтесь скриптами
+В linux, как водится, все операции выполняйте в виртуальной среде вручную. Или воспользуйтесь скриптами:
 ```
 git clone https://github.com/mitrokun/wyoming_stt_onnxasr.git
 cd wyoming_stt_onnxasr
