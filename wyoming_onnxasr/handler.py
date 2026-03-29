@@ -57,7 +57,7 @@ class OnnxAsrEventHandler(AsyncEventHandler):
             return True
 
         if AudioStop.is_type(event.type):
-            _LOGGER.debug("Audio stopped. Transcribing...")
+            _LOGGER.info("Audio stopped. Transcribing...")
             assert self.audio_buffer is not None
 
             if not self.audio_buffer:
@@ -77,8 +77,7 @@ class OnnxAsrEventHandler(AsyncEventHandler):
             self.audio_buffer = None
             self.language = None
 
-            # Вывод результата только в DEBUG режиме
-            _LOGGER.debug(f"Transcription: {transcription}")
+            _LOGGER.info(f"Transcription: {transcription}")
 
             await self.write_event(Transcript(text=transcription).event())
             _LOGGER.debug("Completed request")
